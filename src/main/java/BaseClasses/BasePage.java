@@ -16,7 +16,7 @@ public class BasePage {
         this.driver = driver;
     }
 
-    public WebElement findElement(ElementType type,String locator){
+    public WebElement findElement(ElementType type, String locator){
         WebElement webElement = null;
         LOGGER.log(Level.INFO, "Web element type: {0} and name: {1}",new Object[] {type,locator});
         switch (type){
