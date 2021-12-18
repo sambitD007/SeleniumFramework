@@ -6,12 +6,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import util.PropertyReader;
 
-public class BaseDriver {
-    public static WebDriver driver;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    public static void setDriver(){
+public class BaseDriver extends PropertyReader {
+    public static WebDriver driver;
+    private final static Logger LOGGER =
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    public BaseDriver() throws Exception {
+    }
+
+    public static void setDriver() throws Exception {
         if(driver == null){
-            String browser = PropertyReader.getEnvironmentData("browser");
+            String browser = getEnvironmentData("browser");
+            LOGGER.log(Level.INFO,"The browser select: {0}",browser);
             if(browser.equalsIgnoreCase("chrome")){
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
