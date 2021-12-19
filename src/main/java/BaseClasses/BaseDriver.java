@@ -18,7 +18,7 @@ public class BaseDriver extends PropertyReader {
     public BaseDriver() throws Exception {
     }
 
-    public static void setDriver() throws Exception {
+    public  WebDriver setDriver() throws Exception {
         if(driver == null){
             String browser = getEnvironmentData("browser");
             LOGGER.log(Level.INFO,"The browser select: {0}",browser);
@@ -34,9 +34,10 @@ public class BaseDriver extends PropertyReader {
             }
         }
         driver.manage().window().maximize();
+        return driver;
     }
 
-    public static void closeDriver(){
+    public void closeDriver(){
         driver.close();
     }
 }
